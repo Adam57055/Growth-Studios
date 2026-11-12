@@ -1,0 +1,258 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Aldrich&display=swap');
+
+:root {
+    --sky: #5affe1;
+    --cyan: #00e5ff;
+    --mint: #6ee7b7;
+    --purple: #a855f7;
+    --pink: #ec4899;
+    --ink: #080c16;
+
+    --glass: rgba(255, 255, 255, 0.07);
+    --glass-border: rgba(255, 255, 255, 0.13);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Outfit', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    background:
+        radial-gradient(ellipse at 15% 20%, rgba(0, 229, 255, 0.13), transparent 40%),
+        radial-gradient(ellipse at 85% 75%, rgba(168, 85, 247, 0.16), transparent 40%),
+        #080c16;
+    color: white;
+    overflow-x: hidden;
+}
+
+/* Animated ambient background */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 45px 45px;
+    mask-image: linear-gradient(to bottom, black, transparent 85%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Main content */
+
+.content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    min-height: 100vh;
+    padding: 110px 24px 40px;
+    text-align: center;
+    isolation: isolate;
+}
+
+/* Main heading */
+
+.content h1 {
+    font-family: 'Aldrich', sans-serif;
+    font-size: clamp(2.5rem, 7vw, 5.5rem);
+    letter-spacing: 3px;
+    background: linear-gradient(
+        110deg,
+        #ffffff,
+        var(--sky),
+        var(--purple),
+        #ffffff
+    );
+    background-size: 250% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientFlow 6s linear infinite;
+    filter: drop-shadow(0 0 20px rgba(90, 255, 225, 0.2));
+}
+
+.content p {
+    max-width: 600px;
+    color: rgba(255,255,255,0.68);
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+/* Shared button styling */
+
+.github,
+.startup {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 15px 32px;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 14px;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(15px);
+}
+
+/* GitHub button */
+
+.github {
+    background: linear-gradient(135deg, #06b6d4, #2563eb);
+    box-shadow:
+        0 0 20px rgba(6, 182, 212, 0.25),
+        inset 0 1px rgba(255,255,255,0.3);
+}
+
+/* Startup button */
+
+.startup {
+    background: linear-gradient(135deg, #9333ea, #ec4899);
+    box-shadow:
+        0 0 20px rgba(168, 85, 247, 0.3),
+        inset 0 1px rgba(255,255,255,0.3);
+}
+
+/* Button hover */
+
+.github:hover,
+.startup:hover {
+    transform: translateY(-5px) scale(1.04);
+    filter: brightness(1.2);
+}
+
+.github:hover {
+    box-shadow: 0 10px 35px rgba(0, 229, 255, 0.4);
+}
+
+.startup:hover {
+    box-shadow: 0 10px 35px rgba(236, 72, 153, 0.4);
+}
+
+.github:active,
+.startup:active {
+    transform: scale(0.96);
+}
+
+/* Navigation */
+
+.nav-bar {
+    position: absolute;
+    top: 22px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: max-content;
+    max-width: calc(100% - 24px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 9px;
+    padding: 10px;
+    z-index: 10;
+
+    background: rgba(255,255,255,0.045);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+
+    box-shadow:
+        0 10px 40px rgba(0,0,0,0.25),
+        inset 0 1px rgba(255,255,255,0.08);
+}
+
+/* Navigation links */
+
+.nav-bar a {
+    position: relative;
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 11px 22px;
+    border-radius: 13px;
+    transition: all 0.3s ease;
+}
+
+.nav-bar a:hover {
+    color: white;
+    background: rgba(90,255,225,0.12);
+    box-shadow: inset 0 0 15px rgba(90,255,225,0.08);
+    transform: translateY(-2px);
+}
+
+/* Active navigation link */
+
+.nav-bar a.active {
+    color: #07131b;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--sky), var(--mint));
+    box-shadow:
+        0 0 18px rgba(90,255,225,0.3),
+        inset 0 1px rgba(255,255,255,0.5);
+}
+
+/* Animations */
+
+@keyframes gradientFlow {
+    to {
+        background-position: 250% center;
+    }
+}
+
+/* Responsive design */
+
+@media (max-width: 480px) {
+    .nav-bar {
+        top: 12px;
+        gap: 4px;
+        padding: 7px;
+        border-radius: 15px;
+    }
+
+    .nav-bar a {
+        padding: 9px 12px;
+        font-size: 0.82rem;
+    }
+
+    .content {
+        gap: 20px;
+        padding: 100px 18px 30px;
+    }
+
+    .github,
+    .startup {
+        padding: 13px 24px;
+    }
+}
+
+/* Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
